@@ -7,20 +7,23 @@ mots = ["affichage", "reste", "manger"]
 
 def main(mot, affichage):
     caractères = len(mot)
-    print(mot[0] + "_" * caractères + affichage)
+    print(mot[0] + "_" * caractères + str(affichage))
     
 def jouer():
     mot = random.choice(mots)
-    affichage = [""]
-    main(mot, affichage)
+    affichage = []
 
     erreurs = 0
 
     while True:
+        main(mot, affichage)
         tentative = input("Choississez une lettre")
         if tentative in mot:
-            tentative.append(affichage)
-            print("Trouvé !")
+            if tentative in affichage:
+                print("La lettre à déjà été trouvée")*
+            else:
+                affichage.append(tentative)
+                print("Trouvé !")
         else:
             erreurs += 1
             print("Non, tu as " + str(erreurs) + " erreurs.")
