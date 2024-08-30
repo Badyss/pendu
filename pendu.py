@@ -3,20 +3,18 @@ import random
 
 mots = ["affichage", "reste", "manger"]
 
-
-
 def main(mot, affichage):
-    caractères = len(mot)
-    for lettre in mot:
+    affichage_mot = mot[0]
+    for lettre in mot[1:]:
         if lettre in affichage:
-            print(lettre)
+            affichage_mot += lettre
         else:
-            print("_")
+            affichage_mot += "_"
+    print(affichage_mot)
     
 def jouer():
     mot = random.choice(mots)
     affichage = []
-
     erreurs = 0
 
     while True:
