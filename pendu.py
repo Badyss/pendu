@@ -1,4 +1,3 @@
-import time
 import random
 
 mots = ["affichage", "reste", "manger"]
