@@ -6,6 +6,14 @@
     <title>ninho</title>
 </head>
 <body>
-<h1>Yooo {{name}}</h1>
+<h1>    
+<ul> 
+    <li>{% if mots == '0' %}</li>
+            <p>Le mot n'est pas dans la liste</p>
+        {% else %}
+            <li>{{ mots }}</li>
+        <li>{% endif %}</li>
+</ul>
+</h1>
 </body>
 </html>

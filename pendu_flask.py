@@ -1,14 +1,14 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
-mots = ["affichage", "reste", "manger"]
-
+liste_mots = ["affichage", "reste", "manger"]
 
 @app.route('/')
 def welcome():
-    return render_template('index.html')
+    mot = request.args.get('mot')
+    mot_final = mot if mot in liste_mots else 0
+    return render_template('index.html', mots=str(mot_final))
 
-@app.route('/bonjour/<string:name>')
-def bonjour(name):
-    return render_template('index.html', name=name)
+
+if __name__ == '__main__':
+    app.run(debug=True)
