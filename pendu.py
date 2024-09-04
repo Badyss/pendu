@@ -5,9 +5,13 @@ mots = ["affichage", "reste", "manger"]
 def mot_trouve(mot, affichage):
     return all(lettre in affichage for lettre in mot)
     #On vérifie si toutes les lettres du mot sont présentes dans la liste affichage
+    #for lettre in mot:
+        #if lettre not in affichage:
+            # return False
 
 def afficher_mot(mot, affichage):
     return ''.join(lettre if lettre in affichage else '_' for lettre in mot)
+    #pour chaque lettre dans mot, on print lettre si la lettre est dans le mot, sinon "_"
 
 def jouer():
     mot = random.choice(mots)
