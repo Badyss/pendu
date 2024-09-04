@@ -10,7 +10,7 @@ def mot_trouve(mot, affichage):
 
 def main(mot, affichage):
     if mot_trouve(mot, affichage):
-        rejouer = input("Bravo tu as gagné, veux-tu rejouer ? (oui/non) : ")
+        rejouer = input(f"Bravo tu as gagné, le mot était '{mot}' veux-tu rejouer ? (oui/non) : ")
         if rejouer.lower() == "oui":
             jouer()
         else:
@@ -29,6 +29,7 @@ def main(mot, affichage):
 def jouer():
     mot = random.choice(mots)
     affichage = []
+    affichage.append(mot[0])
     erreurs = 0
 
     while True:
