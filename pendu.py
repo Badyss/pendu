@@ -3,47 +3,36 @@ import random
 mots = ["affichage", "reste", "manger"]
 
 def mot_trouve(mot, affichage):
-    for lettre in mot:
-        if lettre not in affichage:
-            return False
-    return True
+    return all(lettre in affichage for lettre in mot)
+    #On vérifie si toutes les lettres du mot sont présentes dans la liste affichage
 
-def main(mot, affichage):
-    if mot_trouve(mot, affichage):
-        rejouer = input(f"Bravo tu as gagné, le mot était '{mot}' veux-tu rejouer ? (oui/non) : ")
-        if rejouer.lower() == "oui":
-            jouer()
-        else:
-            print("D'accord, au revoir !")
-            return True 
-    else:
-        affichage_mot = mot[0]
-        for lettre in mot[1:]:
-            if lettre in affichage:
-                affichage_mot += lettre
-            else:
-                affichage_mot += "_"
-        print(affichage_mot)
-    return False
+def afficher_mot(mot, affichage):
+    return ''.join(lettre if lettre in affichage else '_' for lettre in mot)
 
 def jouer():
     mot = random.choice(mots)
-    affichage = []
-    affichage.append(mot[0])
+    affichage = [mot[0]]
     erreurs = 0
 
     while True:
-        if main(mot, affichage):
-            break
-        tentative = input("Choisissez une lettre : ")
-        if tentative in mot:
-            if tentative in affichage:
-                print("La lettre a déjà été trouvée.")
+        print(afficher_mot(mot, affichage))
+
+        if mot_trouve(mot, affichage):
+            rejouer = input(f"Bravo, tu as gagné ! Le mot était '{mot}'. Veux-tu rejouer ? (oui/non) : ")
+            if rejouer.lower() == "oui":
+                jouer()
             else:
-                affichage.append(tentative)
-                print("Trouvé !")
+                print("D'accord, au revoir !")
+            break
+
+        tentative = input("Choisissez une lettre : ")
+        if tentative in affichage:
+            print("La lettre a déjà été trouvée.")
+        elif tentative in mot:
+            affichage.append(tentative)
+            print("Trouvé !")
         else:
             erreurs += 1
-            print("Non, tu as " + str(erreurs) + " erreurs.")
+            print(f"Non, tu as {erreurs} erreurs.")
 
 jouer()
